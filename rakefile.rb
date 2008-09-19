@@ -24,21 +24,29 @@ project_model :model do |m|
   # m.libraries             << :corelib
 end
 
-desc 'Compile and run the application for debugging'
+
+desc 'Compile and debug the application'
 debug :debug
 
-desc 'Compile and run the test harness'
+desc 'Compile run the test harness'
 unit :test
 
-desc 'Compile for deployment'
+desc 'Compile the optimized deployment'
 deploy :deploy
 
-desc 'Generate documentation'
-document :doc
+desc 'Create documentation'
+asdoc :docs do |t|
+	t.source_path << "src"
+	t.source_path << "assets"
+	t.source_path << "lib/asunit3"
+	t.source_path << "test"
+	t.doc_sources << "src"
+	%w(asmonkeyRunner AllTests ca.function3.functors.HideTest).each { |c| t.exclude_classes << c }
+	%w(asunit.framework.Assert asunit.runner.BaseTestRunner asunit.errors.AssertionFailedError asunit.errors.InstanceNotFoundError asunit.textui.ResultPrinter asunit.framework.Test asunit.framework.TestCase asunit.framework.TestFailure asunit.framework.TestListener asunit.framework.TestResult asunit.textui.TestRunner asunit.framework.TestSuite asunit.runner.Version).each { |c| t.exclude_classes << c }
+end
+
+desc 'Compile a SWC file'
+swc :swc
 
 # set up the default rake task
 task :default => :debug
-
-# Coming Soon....
-#desc "Generate Flex Builder projects"
-#flex_builder :project
