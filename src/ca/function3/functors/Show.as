@@ -3,9 +3,9 @@
 	
 	import flash.display.DisplayObject;
 	
-	public class Hide implements Applyable {
+	public class Show implements Applyable {
 		public function each( o:Object ):void {
-			DisplayObject(o).visible = false;
+			DisplayObject(o).visible = true;
 		}
 	}
 }

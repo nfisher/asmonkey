@@ -2,10 +2,11 @@
 	import ca.function3.Applyable;
 	
 	import flash.display.DisplayObject;
+	import flash.display.MovieClip;
 	
-	public class Hide implements Applyable {
+	public class PlayFirstFrame implements Applyable {
 		public function each( o:Object ):void {
-			DisplayObject(o).visible = false;
+			MovieClip(o).gotoAndPlay( 1 );
 		}
 	}
 }

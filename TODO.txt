@@ -1,1 +1,10 @@
-* Implement ArrayGroup and Container as prototype modifiers.
+* Document the functor classes;
+** Accordian
+** BidirectionalPlay
+** BulkAssign
+** Hide
+** PlayFirstFrame
+** PropertyAssignment
+** Show
+** StopAtFrame
+** StopIfLastFrame
