@@ -22,9 +22,5 @@ package ca.function3.functors {
 		public function testInstantiated():void {
 			assertTrue("hide is Hide", hide is Hide);
 		}
-
-		public function testFailure():void {
-			assertTrue("Failing test", false);
-		}
 	}
 }

@@ -8,11 +8,13 @@ package {
 
 	import asunit.framework.TestSuite;
 	import ca.function3.functors.HideTest;
+	import ca.function3.mime.Base64Test;
 
 	public class AllTests extends TestSuite {
 
 		public function AllTests() {
 			addTest(new ca.function3.functors.HideTest());
+			addTest(new ca.function3.mime.Base64Test());
 		}
 	}
 }
