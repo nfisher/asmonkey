@@ -11,6 +11,10 @@ project_model :model do |m|
   m.background_color        = '#FFFFFF'
   m.width                   = 970
   m.height                  = 550
+  # m.use_fdb               = true
+  #m.use_fcsh                = true
+  # m.preprocessor          = 'cpp -D__DEBUG=false -P - - | tail -c +3'
+  # m.preprocessed_path     = '.preprocessed'
   # m.src_dir               = 'src'
   # m.lib_dir               = 'lib'
   # m.swc_dir               = 'lib'
@@ -21,9 +25,8 @@ project_model :model do |m|
   # m.compiler_gem_name     = 'sprout-flex4sdk-tool'
   # m.compiler_gem_version  = '>= 4.0.0'
   # m.source_path           << "#{m.lib_dir}/somelib"
-  # m.libraries             << :corelib
+  m.libraries               << :corelib
 end
-
 
 desc 'Compile and debug the application'
 debug :debug
@@ -35,18 +38,13 @@ desc 'Compile the optimized deployment'
 deploy :deploy
 
 desc 'Create documentation'
-asdoc :docs do |t|
-	t.source_path << "src"
-	t.source_path << "assets"
-	t.source_path << "lib/asunit3"
-	t.source_path << "test"
-	t.doc_sources << "src"
-	%w(asmonkeyRunner AllTests ca.function3.functors.HideTest).each { |c| t.exclude_classes << c }
-	%w(asunit.framework.Assert asunit.runner.BaseTestRunner asunit.errors.AssertionFailedError asunit.errors.InstanceNotFoundError asunit.textui.ResultPrinter asunit.framework.Test asunit.framework.TestCase asunit.framework.TestFailure asunit.framework.TestListener asunit.framework.TestResult asunit.textui.TestRunner asunit.framework.TestSuite asunit.runner.Version).each { |c| t.exclude_classes << c }
-end
+document :doc
 
 desc 'Compile a SWC file'
 swc :swc
+
+desc 'Compile and run the test harness for CI'
+ci :cruise
 
 # set up the default rake task
 task :default => :debug
